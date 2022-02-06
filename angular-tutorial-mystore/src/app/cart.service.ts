@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,7 +10,7 @@ export class CartService {
    items = [];
 
    addToCart(product: any){
-     this.items.push(product);
+     this.items.push ;{product};
    }
    getItems(){
      return this.items;

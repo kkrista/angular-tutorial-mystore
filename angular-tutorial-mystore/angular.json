@@ -1,3 +1,5 @@
+
+
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
@@ -17,6 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["crypto"],
             "outputPath": "dist/angular-tutorial-mystore",
             "index": "src/index.html",
             "main": "src/main.ts",
