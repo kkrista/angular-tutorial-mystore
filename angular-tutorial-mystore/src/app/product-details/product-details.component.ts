@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { products } from '../products';
+import { Product, products } from '../products';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -9,28 +9,23 @@ import { CartService } from '../cart.service';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  product: { name: string; price: number; description: string } | undefined;
-  constructor(
-    private route: ActivatedRoute,
-    private cartService: CartService
-  ) {}
 
-  addToCart(product: any) {
-    window.alert('Your product has been added to the cart!');
+  product: Product | undefined
+
+  constructor(private route : ActivatedRoute,
+    private cartService: CartService) {
+    const routeParams = this.route.snapshot.paramMap;
+
+    const productIdFromRoute = Number(routeParams.get('productId'));
+
+    this.product = products.find(product => product.id === productIdFromRoute);
+  }
+
+  ngOnInit(): void {
+  }
+
+  addToCart(product: Product){
     this.cartService.addToCart(product);
+    window.alert("Your product has been added to the cart")
   }
-
-    ngOnInit() {
-      this.route.paramMap.subscribe(params => {
-      this.product = products[+params.get];{{'productId'}};
-  });
-  }
-
-  // Alla ohjeiden mukaan
-
-  //  ngOnInit() {
-  //        this.route.paramMap.subscribe(params => {
-  //        this.product = products[+params.get('productId')];
-  //   });
-  // }
 }
